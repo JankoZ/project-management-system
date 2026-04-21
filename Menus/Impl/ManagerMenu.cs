@@ -16,5 +16,6 @@ public class ManagerMenu : ActionMenu
         Actions.Add(actionFactory.Create<RegisterNewEmployeeAction>());
         Actions.Add(actionFactory.Create<ViewLogsAction>());
         Actions.Add(actionFactory.Create<LogoutAction>());
+        Actions.Add(actionFactory.Create<ExitAction>());
     }
 }

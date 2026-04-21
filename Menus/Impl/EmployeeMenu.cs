@@ -13,5 +13,6 @@ public class EmployeeMenu : ActionMenu
         Actions.Add(actionFactory.Create<ShowMyTasksAction>());
         Actions.Add(actionFactory.Create<ChangeTaskStatusAction>());
         Actions.Add(actionFactory.Create<LogoutAction>());
+        Actions.Add(actionFactory.Create<ExitAction>());
     }
 }
