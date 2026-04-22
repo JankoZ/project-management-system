@@ -5,13 +5,13 @@ namespace ProjectManagementSystem.Storage.Impl;
 
 public class JsonStorage : IStorage
 {
-    private readonly string _filePath = "data.json";
-    
+    private const string FilePath = "data.json";
+
     public DataContainer Load()
     {
-        if (!File.Exists(_filePath)) return new DataContainer();
+        if (!File.Exists(FilePath)) return new DataContainer();
         
-        string json = File.ReadAllText(_filePath);
+        string json = File.ReadAllText(FilePath);
         
         return JsonSerializer.Deserialize<DataContainer>(json) ?? new DataContainer();
     }
@@ -21,6 +21,6 @@ public class JsonStorage : IStorage
         string json = JsonSerializer.Serialize(data,
             new JsonSerializerOptions { WriteIndented = true });
         
-        File.WriteAllText(_filePath, json);
+        File.WriteAllText(FilePath, json);
     }
 }

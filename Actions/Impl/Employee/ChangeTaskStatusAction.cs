@@ -31,18 +31,16 @@ public class ChangeTaskStatusAction : IAction
         for (int i = 0; i < tasks.Count; ++i)
             Console.WriteLine($"{i + 1}. {tasks[i].Title} ({tasks[i].Status})");
 
-        if (int.TryParse(IoUtils.ReadNonEmptyInput(), out int tId) && tId > 0 && tId <= tasks.Count)
-        {
-            IoUtils.PrintInfo("\nSelect status:");
-            var enums = Enum.GetValues<ProjectTaskStatus>();
-            for (int i = 0; i < enums.Length; ++i)
-                Console.WriteLine($"{i + 1}. {enums[i]}");
+        if (!int.TryParse(IoUtils.ReadNonEmptyInput(), out int tId) || tId <= 0 || tId > tasks.Count) return;
+        
+        IoUtils.PrintInfo("\nSelect status:");
+        var enums = Enum.GetValues<ProjectTaskStatus>();
+        for (int i = 0; i < enums.Length; ++i)
+            Console.WriteLine($"{i + 1}. {enums[i]}");
 
-            if (int.TryParse(IoUtils.ReadNonEmptyInput(), out int sId) && sId > 0 && sId <= enums.Length)
-            {
-                _taskService.UpdateTaskStatus(tasks[tId - 1].Id, (ProjectTaskStatus)(sId - 1));
-                IoUtils.PrintInfo("\nStatus updated.");
-            }
-        }
+        if (!int.TryParse(IoUtils.ReadNonEmptyInput(), out int sId) || sId <= 0 || sId > enums.Length) return;
+        
+        _taskService.UpdateTaskStatus(tasks[tId - 1].Id, (ProjectTaskStatus)(sId - 1));
+        IoUtils.PrintInfo("\nStatus updated.");
     }
 }

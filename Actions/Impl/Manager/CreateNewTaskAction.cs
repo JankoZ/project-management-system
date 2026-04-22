@@ -34,11 +34,10 @@ public class CreateNewTaskAction : IAction
         Console.WriteLine("Select an employee:");
         for (int i = 0; i < employees.Count; ++i)
             Console.WriteLine($"{i + 1}. {employees[i].Login}");
+
+        if (!int.TryParse(IoUtils.ReadNonEmptyInput(), out int id) || id <= 0 || id > employees.Count) return;
         
-        if (int.TryParse(IoUtils.ReadNonEmptyInput(), out int id) && id > 0 && id <= employees.Count)
-        {
-            _taskService.CreateTask(projectId, title, description, employees[id - 1].Id);
-            IoUtils.PrintInfo($"\nTask {projectId}.{title} created.");
-        }
+        _taskService.CreateTask(projectId, title, description, employees[id - 1].Id);
+        IoUtils.PrintInfo($"\nTask {projectId}.{title} created.");
     }
 }

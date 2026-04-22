@@ -6,15 +6,15 @@ namespace ProjectManagementSystem.Storage.Impl;
 
 public class EncryptedJsonStorage : IStorage
 {
-    private readonly string _filePath = "data.protected";
-    
+    private const string FilePath = "data.protected";
+
     public DataContainer Load()
     {
-        if (!File.Exists(_filePath)) return new DataContainer();
+        if (!File.Exists(FilePath)) return new DataContainer();
 
         try
         {
-            string encrypted = File.ReadAllText(_filePath);
+            string encrypted = File.ReadAllText(FilePath);
             string json = EncryptionUtils.Decrypt(encrypted);
             return JsonSerializer.Deserialize<DataContainer>(json) ?? new DataContainer();
         }
@@ -28,6 +28,6 @@ public class EncryptedJsonStorage : IStorage
     {
         string json = JsonSerializer.Serialize(data);
         
-        File.WriteAllText(_filePath, EncryptionUtils.Encrypt(json));
+        File.WriteAllText(FilePath, EncryptionUtils.Encrypt(json));
     }
 }

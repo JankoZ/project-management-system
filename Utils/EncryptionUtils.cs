@@ -5,8 +5,8 @@ namespace ProjectManagementSystem.Utils;
 
 public static class EncryptionUtils
 {
-    private static readonly string SecretKey = "ed47659349e669994b51285e4fcf59be";
-    
+    private const string SecretKey = "ed47659349e669994b51285e4fcf59be";
+
     public static  string Encrypt(string clearText)
     {
         using var aes = Aes.Create();

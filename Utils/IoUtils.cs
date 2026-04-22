@@ -2,7 +2,7 @@ namespace ProjectManagementSystem.Utils;
 
 public static class IoUtils
 {
-    public static string ReadNonEmptyInput() => ReadNonEmptyInput(String.Empty);
+    public static string ReadNonEmptyInput() => ReadNonEmptyInput(string.Empty);
     
     public static string ReadNonEmptyInput(string prompt)
     {
@@ -16,20 +16,9 @@ public static class IoUtils
         }
     }
     
-    public static void PrintError(string prompt)
-    {
-        ColorPrint(prompt, ConsoleColor.Red);
-    }
-
-    public static void PrintInfo(string prompt)
-    {
-        ColorPrint(prompt, ConsoleColor.Cyan);
-    }
-
-    public static void PrintWarning(string prompt)
-    {
-        ColorPrint(prompt, ConsoleColor.Yellow);
-    }
+    public static void PrintError(string prompt) => ColorPrint(prompt, ConsoleColor.Red);
+    public static void PrintInfo(string prompt) => ColorPrint(prompt, ConsoleColor.Cyan);
+    public static void PrintWarning(string prompt) => ColorPrint(prompt, ConsoleColor.Yellow);
 
     private static void ColorPrint(string prompt, ConsoleColor color)
     {
